@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kegiatan Desa | Sepinggan Gelik</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+
+        <div class="logo">
+            🌿 SEPINGGAN GELIK
+        </div>
+
+        <nav id="navMenu">
+            <a href="./index.html">BERANDA</a>
+            <a href="./profil.html">PROFIL DESA</a>
+            <a href="./keindahan.html">KEINDAHAN</a>
+            <a href="./kegiatan.html" class="active">KEGIATAN</a>
+            <a href="./lokasi.html">LOKASI</a>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle" type="button">
+            🌙
+        </button>
+
+        <button id="menuToggle" class="menu-toggle" type="button">
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main>
+
+        <section class="page">
+
+            <!-- JUDUL -->
+            <div class="section-title">
+
+                <p class="eyebrow">
+                    🌿 AKTIVITAS MASYARAKAT 🌿
+                </p>
+
+                <h1>KEGIATAN DESA</h1>
+
+                <div class="title-line"></div>
+
+                <p>
+                    Berbagai kegiatan masyarakat Desa Sepinggan Gelik.
+                </p>
+
+            </div>
+
+
+            <!-- FILTER -->
+            <div class="activity-filter">
+
+                <button class="filter-btn active" type="button">
+                    Semua
+                </button>
+
+                <button class="filter-btn" type="button">
+                    2026
+                </button>
+
+            </div>
+
+
+            <section
+                class="activity-grid"
+                id="kegiatanContainer">
+
+                <div class="loading-kegiatan">
+                    <span>🌿</span>
+                    <p>Memuat kegiatan desa...</p>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Desa Sepinggan Gelik
+        </p>
+
+        <p>
+            Website Desa Sepinggan Gelik
+        </p>
+
+    </footer>
+
+
+    <!-- MUSIK DESA -->
+    <audio id="musikDesa" loop>
+        <source src="./lagu-desa.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- SCRIPT UTAMA WEBSITE -->
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
