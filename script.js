@@ -649,3 +649,51 @@ function escapeHTML(value) {
         .replace(/'/g, "&#039;");
 
 }
+
+
+/* =====================================================
+   DATABASE BERANDA - GOOGLE SPREADSHEET
+   Hanya bekerja pada halaman Beranda.
+   Jika database tidak dapat diakses, isi asli Beranda
+   tetap tampil seperti semula.
+===================================================== */
+
+const BERANDA_DATABASE_URL = "https://script.google.com/macros/s/AKfycbxEXPn8nesAhXldrGCLgTvCwyjsL5h-iwopHfb6n5nSx9xYJ0Yp8xN9G-zKbRXhNFy5/exec";
+
+function loadBerandaDatabase() {
+    const container = document.getElementById("berandaDatabase");
+    if (!container) return;
+    const callbackName = "berandaDatabaseCallback_" + Date.now();
+    let script;
+    const timeout = setTimeout(cleanup, 7000);
+    function cleanup() {
+        clearTimeout(timeout);
+        if (script && script.parentNode) script.parentNode.removeChild(script);
+        try { delete window[callbackName]; } catch (e) {}
+    }
+    window[callbackName] = function (response) {
+        try {
+            if (!response || !response.success || !Array.isArray(response.data) || response.data.length === 0) return;
+            container.innerHTML = "";
+            response.data.forEach((item, index) => {
+                const card = document.createElement("div");
+                card.className = "gallery-card";
+                const gambar = item.gambar || ["./sawah.jpg","./masyarakat.jpg","./masjid.jpg"][index % 3];
+                card.innerHTML = `
+                    <img src="${escapeHTML(gambar)}" alt="${escapeHTML(item.judul || "Data Desa")}" loading="lazy" onerror="this.onerror=null;this.src='./sawah.jpg';">
+                    <h3>${escapeHTML(item.judul || "Data Desa")}</h3>
+                `;
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.log("Database Beranda tidak dapat dimuat. Isi asli tetap digunakan.");
+        } finally { cleanup(); }
+    };
+    script = document.createElement("script");
+    script.src = BERANDA_DATABASE_URL + "?action=get&callback=" + encodeURIComponent(callbackName);
+    script.async = true;
+    document.head.appendChild(script);
+}
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadBerandaDatabase);
+else loadBerandaDatabase();
